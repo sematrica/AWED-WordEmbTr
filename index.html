@@ -6,52 +6,52 @@
     <title>Word Embedding Trainer Input</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: "MS Sans Serif", Arial, sans-serif;
+            background-color: #c0c0c0;
+            color: black;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #f0f0f0;
         }
         .container {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 80%;
-            max-width: 600px;
+            background-color: #e0e0e0;
+            border: 2px solid #000;
+            padding: 20px;
+            width: 90%;
+            max-width: 800px;
+            box-shadow: 4px 4px 0 #000;
         }
         h1 {
+            font-size: 1.5rem;
             margin-top: 0;
-            color: #333;
+            margin-bottom: 1rem;
         }
         #inputText {
             width: 100%;
             height: 200px;
-            padding: 0.5rem;
+            padding: 5px;
             margin-bottom: 1rem;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            resize: vertical;
+            border: 2px inset;
+            font-family: "Courier New", monospace;
         }
         button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 4px;
+            background-color: #e0e0e0;
+            border: 2px outset #fff;
+            color: black;
+            padding: 5px 10px;
             cursor: pointer;
             font-size: 1rem;
-            margin-right: 0.5rem;
+            box-shadow: 2px 2px 0 #000;
         }
-        button:hover {
-            background-color: #45a049;
+        button:active {
+            border-style: inset;
+            box-shadow: none;
         }
         #result {
             margin-top: 1rem;
             font-style: italic;
-            color: #666;
         }
     </style>
 </head>
@@ -65,26 +65,26 @@
 </div>
 
 <script>
-        let trainingData = [];
+    let trainingData = [];
 
-        document.getElementById('addBtn').addEventListener('click', function() {
-            const inputText = document.getElementById('inputText').value;
-            if (inputText.trim() !== '') {
-                trainingData.push(inputText);
-                document.getElementById('result').textContent = `Added to training data. Total entries: ${trainingData.length}`;
-                document.getElementById('inputText').value = '';
-            }
-        });
+    document.getElementById('addBtn').addEventListener('click', function() {
+        const inputText = document.getElementById('inputText').value;
+        if (inputText.trim() !== '') {
+            trainingData.push(inputText);
+            document.getElementById('result').textContent = `Added to training data. Total entries: ${trainingData.length}`;
+            document.getElementById('inputText').value = '';
+        }
+    });
 
-        document.getElementById('downloadBtn').addEventListener('click', function() {
-            if (trainingData.length > 0) {
-                const blob = new Blob([trainingData.join('\n')], { type: 'text/plain' });
-                const a = document.createElement('a');
-                a.href = URL.createObjectURL(blob);
-                a.download = 'training_data.txt';
-                a.click();
-            }
-        });
-    </script>
+    document.getElementById('downloadBtn').addEventListener('click', function() {
+        if (trainingData.length > 0) {
+            const blob = new Blob([trainingData.join('\n')], { type: 'text/plain' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = 'training_data.txt';
+            a.click();
+        }
+    });
+</script>
 </body>
 </html>
