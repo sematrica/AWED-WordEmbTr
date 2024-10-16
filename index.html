@@ -28,15 +28,13 @@
             margin-top: 0;
             margin-bottom: 1rem;
         }
-        #inputText, #fileNameField {
+        #inputText {
             width: 100%;
+            height: 200px;
             padding: 5px;
             margin-bottom: 1rem;
             border: 2px inset;
             font-family: "Courier New", monospace;
-        }
-        #inputText {
-            height: 200px;
         }
         button {
             background-color: #e0e0e0;
@@ -60,7 +58,6 @@
 <body>
 <div class="container">
     <h1>Word Embedding Trainer Input</h1>
-    <input type="text" id="fileNameField" placeholder="Enter file name prefix here">
     <textarea id="inputText" placeholder="Enter your text here (multiple lines allowed)"></textarea>
     <button id="addBtn">Add to Training Data</button>
     <button id="downloadBtn">Download Training Data</button>
@@ -81,16 +78,10 @@
 
     document.getElementById('downloadBtn').addEventListener('click', function() {
         if (trainingData.length > 0) {
-            const fileNamePrefix = document.getElementById('fileNameField').value.trim();
-            if (fileNamePrefix === '') {
-                alert('Please enter a file name prefix.');
-                return;
-            }
-            const fileName = `${fileNamePrefix}_training_data.txt`;
             const blob = new Blob([trainingData.join('\n')], { type: 'text/plain' });
             const a = document.createElement('a');
             a.href = URL.createObjectURL(blob);
-            a.download = fileName;
+            a.download = 'training_data.txt';
             a.click();
         }
     });
